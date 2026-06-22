@@ -1,0 +1,13 @@
+[{
+  "_id": "L001",
+  "userId": "A23CS0001",
+  "bookId": "B001",
+  "loanDate": {
+    "$date": "2024-12-01T00:00:00.000Z"
+  },
+  "dueDate": {
+    "$date": "2024-12-14T00:00:00.000Z"
+  },
+  "returnDate": null,
+  "status": "BORROWED"
+}]

@@ -1,0 +1,1 @@
+These files are the initial database created before the CRUD in the project.

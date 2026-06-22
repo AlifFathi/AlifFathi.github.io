@@ -2,10 +2,1015 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Name — Data Engineering Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alif Fathi — E-Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #00c4b4;
+      --accent-dark: #009d90;
+      --dark-bg: #0d1117;
+      --border: #30363d;
+    }
+    * { font-family: 'Inter', sans-serif; }
+    body { background-color: #f8f9fa; color: #212529; }
+
+    /* ── Navbar ── */
+    .navbar { background: var(--dark-bg) !important; border-bottom: 1px solid var(--border); }
+    .navbar-brand { color: var(--accent) !important; font-weight: 700; font-size: 1.25rem; }
+    .nav-link { color: #c9d1d9 !important; font-weight: 500; transition: color .2s; }
+    .nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+    .dropdown-menu { background: #161b22; border: 1px solid var(--border); }
+    .dropdown-item { color: #c9d1d9; font-weight: 500; font-size: .9rem; }
+    .dropdown-item:hover { background: #21262d; color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f2e 100%);
+      color: white; padding: 90px 0 70px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -40%; right: -5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,196,180,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-avatar {
+      width: 130px; height: 130px; border-radius: 50%;
+      border: 3px solid var(--accent); background: #21262d;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; color: var(--accent);
+    }
+    .hero h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: .25rem; }
+    .hero .tagline { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin-bottom: .9rem; }
+    .hero .bio { color: #c9d1d9; max-width: 580px; line-height: 1.75; font-size: .97rem; }
+    .btn-accent {
+      background: var(--accent); color: #fff; border: none;
+      padding: .5rem 1.3rem; border-radius: 6px; font-weight: 600;
+      text-decoration: none; transition: background .2s; display: inline-block;
+    }
+    .btn-accent:hover { background: var(--accent-dark); color: #fff; }
+    .btn-outline-accent {
+      background: transparent; color: var(--accent); border: 2px solid var(--accent);
+      padding: .45rem 1.3rem; border-radius: 6px; font-weight: 600;
+      text-decoration: none; transition: all .2s; display: inline-block;
+    }
+    .btn-outline-accent:hover { background: var(--accent); color: #fff; }
+
+    /* ── Section headings ── */
+    section { scroll-margin-top: 68px; }
+    .sem-block { scroll-margin-top: 68px; }
+    .section-divider { width: 48px; height: 4px; background: var(--accent); border-radius: 2px; margin-bottom: .8rem; }
+    .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: .2rem; }
+    .section-subtitle { color: #6c757d; font-size: .97rem; margin-bottom: 2rem; }
+    .sem-heading {
+      font-weight: 700; color: #6c757d; text-transform: uppercase;
+      letter-spacing: 1px; font-size: .8rem;
+      border-left: 3px solid var(--accent); padding-left: .7rem;
+    }
+
+    /* ── Skill badges ── */
+    .skill-badge {
+      display: inline-block; padding: .35rem .85rem; margin: .25rem .15rem;
+      border-radius: 20px; font-size: .82rem; font-weight: 600;
+      background: #e8f5f4; color: #007a6e; border: 1px solid #b2dfdb;
+    }
+    .skill-badge.blue { background: #e3f2fd; color: #1565c0; border-color: #bbdefb; }
+    .skill-badge.purple { background: #f3e5f5; color: #6a1b9a; border-color: #e1bee7; }
+    .skill-badge.orange { background: #fff3e0; color: #e65100; border-color: #ffe0b2; }
+
+    /* ── Project cards ── */
+    .project-card {
+      border: 1px solid #dee2e6; border-radius: 12px; padding: 1.4rem;
+      height: 100%; background: white; position: relative; overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .project-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent);
+    }
+    .project-card.highlight::before { height: 4px; background: linear-gradient(90deg, var(--accent), #ffb300); }
+    .project-card h5 { font-size: 1.05rem; font-weight: 700; margin-bottom: .35rem; }
+    .card-tag { color: var(--accent); font-size: .83rem; font-weight: 600; margin-bottom: .7rem; }
+    .project-card p { color: #6c757d; font-size: .88rem; line-height: 1.65; margin-bottom: .9rem; }
+    .tech-tag {
+      display: inline-block; background: #f1f3f5; color: #495057;
+      padding: .18rem .55rem; border-radius: 4px; font-size: .76rem;
+      margin: .15rem .05rem; font-weight: 500;
+    }
+    .project-link {
+      color: var(--accent); text-decoration: none; font-size: .83rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: .3rem;
+      margin-right: .9rem; margin-top: .5rem;
+    }
+    .project-link:hover { color: var(--accent-dark); }
+    .badge-current {
+      background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2;
+      font-size: .68rem; font-weight: 700; padding: .15rem .5rem; border-radius: 12px;
+      text-transform: uppercase; letter-spacing: .5px; margin-left: .5rem;
+    }
+
+    /* ── Certificate cards ── */
+    .cert-card {
+      background: #fff; border: 1px solid #dee2e6; border-radius: 12px;
+      padding: 1.25rem 1rem; text-align: center; height: 100%;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .cert-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .cert-card > div[data-share-badge-id] {
+      min-height: 150px; display: flex; align-items: center; justify-content: center;
+    }
+    .cert-card h6 { font-weight: 700; font-size: .9rem; margin: .75rem 0 .15rem; color: #212529; line-height: 1.35; }
+    .cert-issuer { color: #6c757d; font-size: .78rem; margin-bottom: .5rem; }
+    .cert-verify { color: var(--accent); font-size: .8rem; font-weight: 600; text-decoration: none; }
+    .cert-verify:hover { color: var(--accent-dark); }
+
+    /* ── Reflection cards ── */
+    .reflection-card {
+      background: white; border-radius: 12px; padding: 1.6rem;
+      border: 1px solid #dee2e6;
+    }
+    .reflection-card h5 { font-weight: 700; font-size: 1.05rem; margin-bottom: .2rem; }
+    .reflection-course { color: var(--accent); font-size: .83rem; font-weight: 600; margin-bottom: .9rem; }
+    .reflection-card p { color: #6c757d; font-size: .9rem; line-height: 1.8; margin-bottom: .7rem; }
+    .improvement {
+      background: #f8f9fa; border-left: 3px solid var(--accent);
+      padding: .75rem 1rem; border-radius: 0 6px 6px 0;
+      font-size: .86rem; color: #495057; margin-top: .75rem;
+    }
+
+    /* ── About info list ── */
+    .info-list { list-style: none; padding: 0; }
+    .info-list li {
+      padding: .5rem 0; color: #6c757d; font-size: .93rem;
+      display: flex; align-items: center; gap: .75rem;
+      border-bottom: 1px solid #f1f3f5;
+    }
+    .info-list li i { color: var(--accent); width: 16px; }
+    .info-list li strong { color: #212529; }
+
+    /* ── Footer ── */
+    footer { background: var(--dark-bg); color: #8b949e; padding: 3rem 0; }
+    footer a { color: var(--accent); text-decoration: none; }
+    .social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 50%; background: #21262d;
+      color: #c9d1d9; font-size: 1.1rem; margin: 0 .25rem; text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .social-link:hover { background: var(--accent); color: white; }
+  </style>
 </head>
 <body>
-  <h1>Hi, I'm [Your Name]</h1>
-  <p>CS (Data Engineering) student at UTM</p>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#hero"><i class="fa-solid fa-code me-2"></i>Mohamed Alif Fathi</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#coursework" role="button" data-bs-toggle="dropdown">Projects &amp; Assignments</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#semester1">Semester 1</a></li>
+            <li><a class="dropdown-item" href="#semester2">Semester 2</a></li>
+            <li><a class="dropdown-item" href="#semester3">Semester 3</a></li>
+            <li><a class="dropdown-item" href="#semester4">Semester 4</a></li>
+            <li><a class="dropdown-item" href="#semester5">Semester 5</a></li>
+            <li><a class="dropdown-item" href="#semester6">Semester 6</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#reflections">Reflections</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="hero">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-auto d-flex justify-content-center">
+        <img src="profile_picture.jpg" alt="Mohamed Alif Fathi" class="hero-avatar" style="object-fit:cover;">
+      </div>
+      <div class="col">
+        <h1>Mohamed Alif Fathi bin Abdul Latif</h1>
+        <p class="tagline"><i class="fa-solid fa-graduation-cap me-2"></i>CS Data Engineering Student @ UTM</p>
+        <p class="bio">
+          A passionate Computer Science student specialising in Data Engineering at Universiti Teknologi Malaysia (UTM).
+          From low-level C++ and operating systems to data mining, big data processing, and business intelligence —
+          this e-portfolio documents my full academic journey across six semesters of coursework, projects, and growth.
+        </p>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <a href="https://github.com/AlifFathi" target="_blank" class="btn-accent">
+            <i class="fa-brands fa-github me-2"></i>GitHub Profile
+          </a>
+          <a href="https://www.linkedin.com/in/mohamed-alif-fathi-abdul-latif-46b48229a/" target="_blank" class="btn-outline-accent">
+            <i class="fa-brands fa-linkedin me-2"></i>LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="py-5 bg-white">
+  <div class="container">
+    <div class="section-divider"></div>
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">A bit about my background and academic journey</p>
+    <div class="row g-4 align-items-start">
+      <div class="col-md-7">
+        <p style="color:#495057;line-height:1.9;font-size:.96rem;">
+          I am currently pursuing a <strong>Bachelor of Computer Science (Data Engineering)</strong> at
+          <strong>Universiti Teknologi Malaysia (UTM)</strong>. Over six semesters I have built a broad foundation —
+          programming in C++, Java, and Python; designing relational and NoSQL databases; and working hands-on with
+          networking, operating systems, software engineering, and enterprise systems.
+        </p>
+        <p style="color:#495057;line-height:1.9;font-size:.96rem;">
+          My focus has increasingly shifted toward <strong>data engineering</strong>: data mining and clustering,
+          high-performance data processing with Apache Spark, cloud services on Microsoft Azure, business intelligence
+          pipelines, and applied AI. I enjoy turning raw data into insight and building systems that solve real problems,
+          and I thrive in collaborative, project-based environments.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <ul class="info-list">
+          <li><i class="fa-solid fa-user"></i><span><strong>Name:</strong> Mohamed Alif Fathi bin Abdul Latif</span></li>
+          <li><i class="fa-solid fa-id-badge"></i><span><strong>Student ID:</strong> A23CS0112</span></li>
+          <li><i class="fa-solid fa-university"></i><span><strong>University:</strong> Universiti Teknologi Malaysia</span></li>
+          <li><i class="fa-solid fa-graduation-cap"></i><span><strong>Programme:</strong> Bachelor of Computer Science (Data Engineering) with Honours</span></li>
+          <li><i class="fa-solid fa-envelope"></i><span><strong>Email:</strong> alifptn1234@gmail.com</span></li>
+          <li><i class="fa-brands fa-github"></i><span><strong>GitHub:</strong>
+            <a href="https://github.com/AlifFathi" target="_blank" style="color:var(--accent)">AlifFathi</a>
+          </span></li>
+          <li><i class="fa-brands fa-linkedin"></i><span><strong>LinkedIn:</strong>
+            <a href="https://www.linkedin.com/in/mohamed-alif-fathi-abdul-latif-46b48229a/" target="_blank" style="color:var(--accent)">Mohamed Alif Fathi</a>
+          </span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" class="py-5" style="background:#f8f9fa;">
+  <div class="container">
+    <div class="section-divider"></div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-subtitle">Technologies and tools I've worked with across my studies</p>
+
+    <div class="mb-3">
+      <p class="fw-semibold text-muted mb-2" style="font-size:.8rem;text-transform:uppercase;letter-spacing:1px;">Programming Languages</p>
+      <span class="skill-badge purple">C++</span>
+      <span class="skill-badge purple">Java</span>
+      <span class="skill-badge purple">Python</span>
+      <span class="skill-badge purple">PHP</span>
+      <span class="skill-badge purple">JavaScript</span>
+      <span class="skill-badge purple">SQL</span>
+    </div>
+    <div class="mb-3">
+      <p class="fw-semibold text-muted mb-2" style="font-size:.8rem;text-transform:uppercase;letter-spacing:1px;">Data &amp; Databases</p>
+      <span class="skill-badge blue">MySQL</span>
+      <span class="skill-badge blue">MongoDB</span>
+      <span class="skill-badge blue">Data Mining</span>
+      <span class="skill-badge blue">Clustering</span>
+      <span class="skill-badge blue">Apache Spark</span>
+      <span class="skill-badge blue">Business Intelligence</span>
+      <span class="skill-badge blue">Pandas / Jupyter</span>
+      <span class="skill-badge blue">Indexing &amp; Optimisation</span>
+    </div>
+    <div class="mb-3">
+      <p class="fw-semibold text-muted mb-2" style="font-size:.8rem;text-transform:uppercase;letter-spacing:1px;">Web &amp; Software</p>
+      <span class="skill-badge">HTML / CSS</span>
+      <span class="skill-badge">Bootstrap 5</span>
+      <span class="skill-badge">OOP</span>
+      <span class="skill-badge">Software Engineering</span>
+      <span class="skill-badge">System Analysis &amp; Design</span>
+      <span class="skill-badge">SAP / Enterprise Systems</span>
+    </div>
+    <div class="mb-3">
+      <p class="fw-semibold text-muted mb-2" style="font-size:.8rem;text-transform:uppercase;letter-spacing:1px;">Tools &amp; Platforms</p>
+      <span class="skill-badge orange">Microsoft Azure</span>
+      <span class="skill-badge orange">Generative AI</span>
+      <span class="skill-badge orange">Wireshark</span>
+      <span class="skill-badge orange">Cisco Packet Tracer</span>
+      <span class="skill-badge orange">Git &amp; GitHub</span>
+      <span class="skill-badge orange">Operating Systems</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATES ═══ -->
+<section id="certificates" class="py-5 bg-white">
+  <div class="container">
+    <div class="section-divider"></div>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-subtitle">Professional certifications and verified digital badges from Credly</p>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-lg-3">
+        <div class="cert-card">
+          <div data-iframe-width="150" data-iframe-height="240" data-share-badge-id="8e7a999c-cc70-4631-8324-19257f709d84" data-share-badge-host="https://www.credly.com"></div>
+          <h6>Alteryx Designer Core Certification</h6>
+          <p class="cert-issuer">Alteryx</p>
+          <a class="cert-verify" href="https://www.credly.com/badges/8e7a999c-cc70-4631-8324-19257f709d84/public_url" target="_blank"><i class="fa-solid fa-up-right-from-square me-1"></i>Verify on Credly</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="cert-card">
+          <div data-iframe-width="150" data-iframe-height="240" data-share-badge-id="aeb2415f-f2a7-4dcd-8c92-384fd2f302c2" data-share-badge-host="https://www.credly.com"></div>
+          <h6>Microsoft Certified: Azure Data Fundamentals</h6>
+          <p class="cert-issuer">Microsoft</p>
+          <a class="cert-verify" href="https://www.credly.com/badges/aeb2415f-f2a7-4dcd-8c92-384fd2f302c2/public_url" target="_blank"><i class="fa-solid fa-up-right-from-square me-1"></i>Verify on Credly</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="cert-card">
+          <div data-iframe-width="150" data-iframe-height="240" data-share-badge-id="a4da600a-562b-4271-94c1-d9783619a023" data-share-badge-host="https://www.credly.com"></div>
+          <h6>AWS Academy Graduate — Cloud Developing</h6>
+          <p class="cert-issuer">Amazon Web Services (AWS Academy)</p>
+          <a class="cert-verify" href="https://www.credly.com/badges/a4da600a-562b-4271-94c1-d9783619a023/public_url" target="_blank"><i class="fa-solid fa-up-right-from-square me-1"></i>Verify on Credly</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="cert-card">
+          <div data-iframe-width="150" data-iframe-height="240" data-share-badge-id="96ebafbd-2c5f-4e47-ad0f-432407d5d622" data-share-badge-host="https://www.credly.com"></div>
+          <h6>AWS Academy Graduate — Cloud Foundations</h6>
+          <p class="cert-issuer">Amazon Web Services (AWS Academy)</p>
+          <a class="cert-verify" href="https://www.credly.com/badges/96ebafbd-2c5f-4e47-ad0f-432407d5d622/public_url" target="_blank"><i class="fa-solid fa-up-right-from-square me-1"></i>Verify on Credly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS & ASSIGNMENTS ═══ -->
+<section id="coursework" class="py-5" style="background:#f8f9fa;">
+  <div class="container">
+    <div class="section-divider"></div>
+    <h2 class="section-title">Projects &amp; Assignments</h2>
+    <p class="section-subtitle">Every course across my degree, with its projects and assignments</p>
+
+    <!-- Semester 1 -->
+    <div id="semester1" class="sem-block mb-5">
+      <p class="sem-heading mb-3"><i class="fa-solid fa-1 me-1"></i> Semester 1</p>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Programming Technique I</h5>
+            <p class="card-tag"><i class="fa-solid fa-code me-1"></i>C++ Fundamentals</p>
+            <p>Introductory C++ assignments building core problem-solving skills — control structures, functions, and arrays.</p>
+            <div class="mb-2"><span class="tech-tag">C++</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%201/Programming%20Technique%20I/Assignment%201/pt1.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 1</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Programming%20Technique%20I/Assignment%203/pt3.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 3</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Discrete Structure</h5>
+            <p class="card-tag"><i class="fa-solid fa-square-root-variable me-1"></i>Mathematical Foundations</p>
+            <p>Assignments covering logic, set theory, relations, functions, and combinatorics — the mathematics behind computing.</p>
+            <div class="mb-2"><span class="tech-tag">Logic</span><span class="tech-tag">Set Theory</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%201/Discrete%20Structure/Assignment%202/ds2.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 2</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Discrete%20Structure/Assignment%204/ds4.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 4</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Digital Logic</h5>
+            <p class="card-tag"><i class="fa-solid fa-microchip me-1"></i>Logic Gates &amp; Circuits</p>
+            <p>A digital logic design project applying Boolean algebra, logic gates, and combinational and sequential circuits.</p>
+            <div class="mb-2"><span class="tech-tag">Logic Gates</span><span class="tech-tag">Boolean Algebra</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%201/Digital%20Logic/Project/Project%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Technology &amp; Information System</h5>
+            <p class="card-tag"><i class="fa-solid fa-lightbulb me-1"></i>IS &amp; Design Thinking</p>
+            <p>A series of assignments and a design-thinking project covering information systems concepts, low-fidelity prototyping, and reporting.</p>
+            <div class="mb-2"><span class="tech-tag">Information Systems</span><span class="tech-tag">Design Thinking</span><span class="tech-tag">Prototyping</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%201/Technology%20and%20Information%20System/Assignment%201/tis1.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 1</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Technology%20and%20Information%20System/Assignment%202/tis2.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 2</a>
+              <a href="https://drive.google.com/file/d/1d_oNJ06ZvV8tbsqHG70MCQ-HeHrMZtxV/view?usp=drive_link" target="_blank" class="project-link"><i class="fa-brands fa-google-drive"></i> Assignment 3</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Technology%20and%20Information%20System/Assignment%204/tis4.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 4</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Technology%20and%20Information%20System/Project/Prototype.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Prototype</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Technology%20and%20Information%20System/Project/Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Report</a>
+              <a href="Projects%20and%20Assignments/Semester%201/Technology%20and%20Information%20System/Project/Slide.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Slides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 2 -->
+    <div id="semester2" class="sem-block mb-5">
+      <p class="sem-heading mb-3"><i class="fa-solid fa-2 me-1"></i> Semester 2</p>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Programming Technique II</h5>
+            <p class="card-tag"><i class="fa-solid fa-gamepad me-1"></i>Object-Oriented C++</p>
+            <p>An object-oriented C++ game built from scratch — featuring enemies, loot, backgrounds, and game states across multiple classes and header files.</p>
+            <div class="mb-2"><span class="tech-tag">C++</span><span class="tech-tag">OOP</span><span class="tech-tag">Game Dev</span></div>
+            <div>
+              <a href="https://github.com/AlifFathi/AlifFathi.github.io/tree/main/Projects%20and%20Assignments/Semester%202/Programing%20Technique%20II/Project" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>System Analysis &amp; Design</h5>
+            <p class="card-tag"><i class="fa-solid fa-sitemap me-1"></i>Requirements &amp; Modelling</p>
+            <p>A work-based analysis and design project — including an IEEE-format report, an industry-talk assignment, and a full project report covering requirements and modelling.</p>
+            <div class="mb-2"><span class="tech-tag">UML</span><span class="tech-tag">Requirements</span><span class="tech-tag">IEEE Format</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%202/System%20Analysis%20and%20Design%20(WBL)/Assignment%201/ASSIGNMENT_1_IEEE_GROUP_4.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> IEEE Report</a>
+              <a href="Projects%20and%20Assignments/Semester%202/System%20Analysis%20and%20Design%20(WBL)/Assignment%203/Assignment%203%20Industry%20Talk.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Industry Talk</a>
+              <a href="Projects%20and%20Assignments/Semester%202/System%20Analysis%20and%20Design%20(WBL)/Project/SAD%20Project%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+              <a href="https://github.com/AlifFathi/Project1_SAD_20232024" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Human Computer Interaction</h5>
+            <p class="card-tag"><i class="fa-solid fa-hand-pointer me-1"></i>Usability &amp; UX Design</p>
+            <p>An HCI project applying usability principles, user-centred design, and interface evaluation.</p>
+            <div class="mb-2"><span class="tech-tag">UX/UI</span><span class="tech-tag">Usability</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%202/Human%20Computer%20Interaction/Project/HCI%20REPORT_COSMOS.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Computer Organization &amp; Architecture</h5>
+            <p class="card-tag"><i class="fa-solid fa-memory me-1"></i>CPU &amp; Memory Design</p>
+            <p>A project exploring CPU design, the memory hierarchy, and how instructions are executed inside the machine.</p>
+            <div class="mb-2"><span class="tech-tag">Computer Architecture</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%202/Computer%20Organization%20and%20Architecture/Project/COA%20Project%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Probability &amp; Statistical Data Analysis</h5>
+            <p class="card-tag"><i class="fa-solid fa-chart-simple me-1"></i>Applied Statistics</p>
+            <p>A project applying probability and statistics to a real dataset to draw evidence-based conclusions.</p>
+            <div class="mb-2"><span class="tech-tag">Statistics</span><span class="tech-tag">Data Analysis</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%202/Probability%20%26%20Statistical%20Data%20Analysis/Project%202/PSDA%20Project%202%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 3 -->
+    <div id="semester3" class="sem-block mb-5">
+      <p class="sem-heading mb-3"><i class="fa-solid fa-3 me-1"></i> Semester 3</p>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>System Development Technology</h5>
+            <p class="card-tag"><i class="fa-solid fa-laptop-code me-1"></i>Full-Stack Web Development</p>
+            <p>Two PHP/MySQL web applications: an individual Course Registration System with multi-role access, and a work-based cooperative (KADA) management system with loans, savings, PDF generation, and email.</p>
+            <div class="mb-2"><span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span><span class="tech-tag">Bootstrap 5</span><span class="tech-tag">PHPMailer</span><span class="tech-tag">TCPDF</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%203/System%20Development%20Technolgy/Individual%20Project/individual_project_report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Individual Project</a>
+              <a href="Projects%20and%20Assignments/Semester%203/System%20Development%20Technolgy/WBL%20Project/SDT%20Report%20-%20AlphaTech.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+              <a href="Projects%20and%20Assignments/Semester%203/System%20Development%20Technolgy/WBL%20Project/AlphaTech%20Presentation%20Slide.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Slides</a>
+              <a href="Projects%20and%20Assignments/Semester%203/System%20Development%20Technolgy/WBL%20Project/User%20Manual%20-%20AlphaTech.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> User Manual</a>
+              <a href="Projects%20and%20Assignments/Semester%203/System%20Development%20Technolgy/WBL%20Project/Complete%20System%20Documentation%20(SRS%2C%20SDD%20and%20SDT)%20-%20AlphaTech.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Full Documentation</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Network Communications</h5>
+            <p class="card-tag"><i class="fa-solid fa-network-wired me-1"></i>Protocols &amp; Networking</p>
+            <p>Four labs and a full network project — packet analysis with Wireshark, TCP/UDP exploration, subnetting and routing, ARP and switch tables, and a complete network design.</p>
+            <div class="mb-2"><span class="tech-tag">Wireshark</span><span class="tech-tag">Packet Tracer</span><span class="tech-tag">Networking</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%203/Network%20Communications/Lab%201%20-%20WireShark/Lab1-Answer.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 1</a>
+              <a href="Projects%20and%20Assignments/Semester%203/Network%20Communications/Lab%202%20-%20Explore%20TCP%20and%20UDP/LAB2%20-%20Alif%20Fathi.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 2</a>
+              <a href="Projects%20and%20Assignments/Semester%203/Network%20Communications/Lab%203%20-%20Packet%20Tracer%20-%20Subnetting%20and%20Routing/NETCOM%20LAB%2003.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 3</a>
+              <a href="Projects%20and%20Assignments/Semester%203/Network%20Communications/Lab%204%20-%20ARP%20and%20Switch%20Table/Lab_4_ALIFFATHI.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 4</a>
+              <a href="Projects%20and%20Assignments/Semester%203/Network%20Communications/Project/InNet%20TASK%206A.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Task 6A</a>
+              <a href="Projects%20and%20Assignments/Semester%203/Network%20Communications/Project/InNet%20TASK%206B.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Task 6B</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Data Structure &amp; Algorithm</h5>
+            <p class="card-tag"><i class="fa-solid fa-diagram-project me-1"></i>C++ Data Structures</p>
+            <p>Assignments, labs, and a flight-simulation mini project implementing linked lists, sorting, and core data structures in C++.</p>
+            <div class="mb-2"><span class="tech-tag">C++</span><span class="tech-tag">Linked Lists</span><span class="tech-tag">Algorithms</span></div>
+            <div>
+              <a href="https://github.com/AlifFathi/AlifFathi.github.io/tree/main/Projects%20and%20Assignments/Semester%203/Data%20Structure%20and%20Algorithm" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Database (WBL)</h5>
+            <p class="card-tag"><i class="fa-solid fa-database me-1"></i>Database Design &amp; SQL</p>
+            <p>A two-phase work-based assessment — from ER modelling and normalisation (Phase 1) through to full SQL implementation (Phase 2).</p>
+            <div class="mb-2"><span class="tech-tag">MySQL</span><span class="tech-tag">ER Design</span><span class="tech-tag">Normalisation</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%203/Database%20(WBL)/Altenative%20Assessment/ALIFFATHI_SECP2523_AA_PHASE1.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Phase 1</a>
+              <a href="Projects%20and%20Assignments/Semester%203/Database%20(WBL)/Altenative%20Assessment/ALIFFATHI_SECP2523_AA_PHASE2.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Phase 2</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Software Engineering (WBL)</h5>
+            <p class="card-tag"><i class="fa-solid fa-gears me-1"></i>SDLC &amp; Methodologies</p>
+            <p>An academic report on software engineering principles, development methodologies, and best practices.</p>
+            <div class="mb-2"><span class="tech-tag">SDLC</span><span class="tech-tag">Methodologies</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%203/Software%20Engineering%20(WBL)/Assignment%201/SE%20Assignment%201%20G7%20Academic%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Academic Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 4 -->
+    <div id="semester4" class="sem-block mb-5">
+      <p class="sem-heading mb-3"><i class="fa-solid fa-4 me-1"></i> Semester 4</p>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Data Mining</h5>
+            <p class="card-tag"><i class="fa-solid fa-magnifying-glass-chart me-1"></i>Classification &amp; Clustering</p>
+            <p>Two projects extracting patterns from data — the first on classification and pattern mining, the second on clustering and unsupervised learning.</p>
+            <div class="mb-2"><span class="tech-tag">Data Mining</span><span class="tech-tag">Clustering</span><span class="tech-tag">Classification</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%204/Data%20Mining/Project%201/GroupTen_Project1.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project 1</a>
+              <a href="Projects%20and%20Assignments/Semester%204/Data%20Mining/Project%202/GroupTen_Project2Clustering.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project 2 — Clustering</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Data Analytics Programming</h5>
+            <p class="card-tag"><i class="fa-solid fa-chart-line me-1"></i>Python &amp; Jupyter</p>
+            <p>A Python (Jupyter) project analysing car and fuel-consumption datasets — data cleaning, exploration, and visualisation with pandas.</p>
+            <div class="mb-2"><span class="tech-tag">Python</span><span class="tech-tag">Jupyter</span><span class="tech-tag">Pandas</span></div>
+            <div>
+              <a href="https://github.com/AlifFathi/AlifFathi.github.io/blob/main/Projects%20and%20Assignments/Semester%204/Data%20Analytics%20Programming/Project/Iman_Alif_Afiq_PH1_PH2_COMBINED.ipynb" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> View Notebook</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Operating Systems</h5>
+            <p class="card-tag"><i class="fa-solid fa-server me-1"></i>Memory &amp; Process Management</p>
+            <p>Three lab assessments and a project implementing virtual memory management with FIFO and LRU page-replacement algorithms.</p>
+            <div class="mb-2"><span class="tech-tag">Operating Systems</span><span class="tech-tag">Virtual Memory</span><span class="tech-tag">FIFO / LRU</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%204/Operating%20Systems/Lab%201/os-lab-assessment01-Fathi-A23CS0112.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 1</a>
+              <a href="Projects%20and%20Assignments/Semester%204/Operating%20Systems/Lab%202/os-lab-assessment02-Fathi-A23CS0112.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 2</a>
+              <a href="Projects%20and%20Assignments/Semester%204/Operating%20Systems/Lab%203/OS_Lab3_ALIF.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 3</a>
+              <a href="Projects%20and%20Assignments/Semester%204/Operating%20Systems/Project/SECR2043_Project_Group_x64_VirtualMemoryManagement_FIFOLRU.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Object Oriented Programming</h5>
+            <p class="card-tag"><i class="fa-solid fa-cubes me-1"></i>Java OOP</p>
+            <p>A Java project implementing an online shopping cart — demonstrating encapsulation, inheritance, and polymorphism.</p>
+            <div class="mb-2"><span class="tech-tag">Java</span><span class="tech-tag">OOP</span></div>
+            <div>
+              <a href="https://github.com/AlifFathi/OOP-Project-Online-Shoping-Cart" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> GitHub Repository</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 5 -->
+    <div id="semester5" class="sem-block mb-5">
+      <p class="sem-heading mb-3"><i class="fa-solid fa-5 me-1"></i> Semester 5</p>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Database Programming</h5>
+            <p class="card-tag"><i class="fa-solid fa-database me-1"></i>Indexing &amp; NoSQL</p>
+            <p>Assignments and projects spanning a hostel database, transactions and recovery, a registration database benchmarking B-tree and full-text indexing, and a MongoDB library management system.</p>
+            <div class="mb-2"><span class="tech-tag">MySQL</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Indexing</span><span class="tech-tag">NoSQL</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%205/Database%20Programming/Assignment%201/UHD_Hostel_A23CS0112_Alif.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 1</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Database%20Programming/Assignment%202/Database%20Assignment%202.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 2</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Database%20Programming/Project%201/Adam_Group6_Project1.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project 1 Report</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Database%20Programming/Project%201/Group_6_Slides.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project 1 Slides</a>
+              <a href="https://github.com/AlifFathi/Database_Programming_Project_II" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Project 2 Repository</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Database%20Programming/Project%202/AFIQ_GROUP6_PROJECT_2_REPORT.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project 2 Report</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Database%20Programming/Project%202/Project_2_slides.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project 2 Slides</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Artificial Intelligence</h5>
+            <p class="card-tag"><i class="fa-solid fa-robot me-1"></i>AI &amp; Machine Learning</p>
+            <p>An applied AI project exploring intelligent system design — search algorithms, machine learning fundamentals, and intelligent-agent behaviour.</p>
+            <div class="mb-2"><span class="tech-tag">AI</span><span class="tech-tag">Machine Learning</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%205/Artificial%20Intelligence/Project/AI_Project.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Enterprise Systems Design &amp; Modeling (WBL)</h5>
+            <p class="card-tag"><i class="fa-solid fa-building me-1"></i>SAP &amp; Enterprise Systems</p>
+            <p>A work-based enterprise systems project with a technical report, project report and slides, plus industry newsletters on SAP and enterprise modelling.</p>
+            <div class="mb-2"><span class="tech-tag">SAP</span><span class="tech-tag">Enterprise Systems</span><span class="tech-tag">Modelling</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%205/Enterprise%20Systems%20Design%20and%20Modeling%20(WBL)/Assignment%201/Group11_TechnicalReport.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Technical Report</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Enterprise%20Systems%20Design%20and%20Modeling%20(WBL)/Assignment%202/INDUSTRIAL%20TALK%20PPG%20SAP%20Newslatter.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> SAP Newsletter</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Enterprise%20Systems%20Design%20and%20Modeling%20(WBL)/Assignment%203/Assignment%203%20Newsletter%20UTHM.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> UTHM Newsletter</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Enterprise%20Systems%20Design%20and%20Modeling%20(WBL)/Project/ESDM%20Project%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+              <a href="Projects%20and%20Assignments/Semester%205/Enterprise%20Systems%20Design%20and%20Modeling%20(WBL)/Project/Slide.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Slides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 6 -->
+    <div id="semester6" class="sem-block">
+      <p class="sem-heading mb-3"><i class="fa-solid fa-6 me-1"></i> Semester 6 <span class="badge-current">Current</span></p>
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="project-card highlight h-100">
+            <h5>Special Topic in Data Engineering</h5>
+            <p class="card-tag"><i class="fa-solid fa-star me-1"></i>Azure, Spark &amp; Generative AI</p>
+            <p>The capstone course of my Data Engineering track — hands-on tutorials on Microsoft Azure, Apache Spark, AI, and Generative AI, an IEEE-style technical report, and an industry project. This e-portfolio is also part of this course's assessment.</p>
+            <div class="mb-2"><span class="tech-tag">Azure</span><span class="tech-tag">Apache Spark</span><span class="tech-tag">AI</span><span class="tech-tag">Generative AI</span><span class="tech-tag">Data Engineering</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%206/Special%20Topic%20in%20Data%20Engineering/Tutorial%201/Azure_Tutorial_Report_Iman_Alif%20(1).pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Tutorial 1 — Azure</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Special%20Topic%20in%20Data%20Engineering/Tutorial%202/Spark_Tutorial_2_Report_Iman_Alif.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Tutorial 2 — Spark</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Special%20Topic%20in%20Data%20Engineering/Tutorial%203/AI_Tutorial_3_Report_Iman_Alif%20(1).pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Tutorial 3 — AI</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Special%20Topic%20in%20Data%20Engineering/Tutorial%204/Tutorial_4_GenAI_Iman_Alif.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Tutorial 4 — GenAI</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Special%20Topic%20in%20Data%20Engineering/Technical%20Report/Special%20Topic%20Technical%20Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Technical Report</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Special%20Topic%20in%20Data%20Engineering/Project/PPG%20PROJECT%20DOCUMENTATION.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Industry Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>High Performance Data Processing</h5>
+            <p class="card-tag"><i class="fa-solid fa-bolt me-1"></i>Big Data Processing</p>
+            <p>An assignment and a full project on high-performance, big-data processing — with a final report and presentation slides.</p>
+            <div class="mb-2"><span class="tech-tag">Big Data</span><span class="tech-tag">Apache Spark</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%206/High%20Performance%20Data%20Processing/Assignment%201/HPDP_ASSG_1_ALIF.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Assignment 1</a>
+              <a href="Projects%20and%20Assignments/Semester%206/High%20Performance%20Data%20Processing/Project%201/report/Final_Report.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Project Report</a>
+              <a href="Projects%20and%20Assignments/Semester%206/High%20Performance%20Data%20Processing/Project%201/report/Presentation_Slides.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Slides</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Business Intelligence</h5>
+            <p class="card-tag"><i class="fa-solid fa-chart-pie me-1"></i>ETL &amp; Dashboards</p>
+            <p>A three-phase business intelligence project — proposal, data workflow/ETL, and a final BI dashboard with insights.</p>
+            <div class="mb-2"><span class="tech-tag">BI</span><span class="tech-tag">ETL</span><span class="tech-tag">Dashboards</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%206/Business%20Intelligence/Project/Phase%201/BI_Project_Proposal_AllShar_Phase_1.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Phase 1</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Business%20Intelligence/Project/Phase%202/PHASE%202%20_%20Data%20Workflow%20(ALLSHAR).pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Phase 2</a>
+              <a href="Projects%20and%20Assignments/Semester%206/Business%20Intelligence/Project/Phase%203/BI%20Phase%203%20ALLSHAR.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Phase 3</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="project-card h-100">
+            <h5>Application Development</h5>
+            <p class="card-tag"><i class="fa-solid fa-mobile-screen me-1"></i>Modern App Development</p>
+            <p>A lab building a modern application using current app-development frameworks and practices.</p>
+            <div class="mb-2"><span class="tech-tag">App Development</span></div>
+            <div>
+              <a href="Projects%20and%20Assignments/Semester%206/Application%20Development/Lab%201/Lab_Assignment_1_Report_Alif_A23CS0112.pdf" target="_blank" class="project-link"><i class="fa-solid fa-file-pdf"></i> Lab 1 Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REFLECTIONS ═══ -->
+<section id="reflections" class="py-5 bg-white">
+  <div class="container">
+    <div class="section-divider"></div>
+    <h2 class="section-title">Reflections</h2>
+    <p class="section-subtitle">What I've learnt and how I've grown across each subject of my degree</p>
+
+    <!-- Semester 1 -->
+    <p class="sem-heading mb-3 mt-2"><i class="fa-solid fa-1 me-1"></i> Semester 1</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Programming Technique I</h5>
+          <p class="reflection-course"><i class="fa-solid fa-code me-1"></i>C++ Fundamentals</p>
+          <p>This was my first real exposure to programming. I learned the building blocks of C++ — variables, control flow, functions, and arrays — and discovered how to break a problem down into logical steps and translate it into working code.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd practise more on algorithm efficiency rather than just getting the correct output.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Discrete Structure</h5>
+          <p class="reflection-course"><i class="fa-solid fa-square-root-variable me-1"></i>Mathematical Foundations</p>
+          <p>This course gave me the mathematical reasoning behind computing — logic, set theory, relations, functions, and combinatorics. It trained me to think formally and proved how essential maths is to computer science.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd connect each concept to a concrete coding example to make the theory stick better.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Digital Logic</h5>
+          <p class="reflection-course"><i class="fa-solid fa-microchip me-1"></i>Logic Gates &amp; Circuits</p>
+          <p>I learned how computers work at the hardware level — Boolean algebra, logic gates, and combinational and sequential circuits. Designing circuits for the project showed me the foundation beneath every program I write.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd simulate more complex circuits to better appreciate real processor design.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Technology &amp; Information System</h5>
+          <p class="reflection-course"><i class="fa-solid fa-lightbulb me-1"></i>IS &amp; Design Thinking</p>
+          <p>This course introduced the role of information systems in organisations and the design-thinking process. Building a low-fidelity prototype taught me to focus on user needs before jumping into a solution.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd gather real user feedback to validate the prototype rather than relying on assumptions.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 2 -->
+    <p class="sem-heading mb-3 mt-4"><i class="fa-solid fa-2 me-1"></i> Semester 2</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Programming Technique II</h5>
+          <p class="reflection-course"><i class="fa-solid fa-gamepad me-1"></i>Object-Oriented C++</p>
+          <p>Building a full C++ game from scratch is where object-oriented programming finally clicked. Splitting the game into classes for enemies, loot, and game states taught me encapsulation and how to manage a larger codebase.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd apply design patterns to make the code cleaner and easier to extend.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Computer Organization &amp; Architecture</h5>
+          <p class="reflection-course"><i class="fa-solid fa-memory me-1"></i>CPU &amp; Memory Design</p>
+          <p>This course revealed what happens inside the machine — CPU design, memory hierarchy, and instruction execution. It deepened my understanding of why certain code runs faster than others.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd relate architecture concepts directly to performance tuning in my own programs.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Human Computer Interaction</h5>
+          <p class="reflection-course"><i class="fa-solid fa-hand-pointer me-1"></i>Usability &amp; UX Design</p>
+          <p>The project taught me to design for people, not just functionality. I learned usability principles, user-centred design, and how to evaluate an interface from the user's perspective.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd run formal usability testing with real users to back up design decisions.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Probability &amp; Statistical Data Analysis</h5>
+          <p class="reflection-course"><i class="fa-solid fa-chart-simple me-1"></i>Applied Statistics</p>
+          <p>This course built my statistical foundation — probability, distributions, and hypothesis testing. Applying statistics to a real dataset in the project showed me how data turns into evidence-based conclusions.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd use a statistical tool like R or Python to analyse larger, messier datasets.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>System Analysis &amp; Design (WBL)</h5>
+          <p class="reflection-course"><i class="fa-solid fa-sitemap me-1"></i>Requirements &amp; Modelling</p>
+          <p>I learned the full process of analysing a system before building it — gathering requirements, UML modelling, and writing an IEEE-format report. The industry talk connected classroom theory to real-world practice.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd involve stakeholders earlier to refine requirements more accurately.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 3 -->
+    <p class="sem-heading mb-3 mt-4"><i class="fa-solid fa-3 me-1"></i> Semester 3</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>System Development Technology</h5>
+          <p class="reflection-course"><i class="fa-solid fa-laptop-code me-1"></i>Full-Stack Web Development</p>
+          <p>Building the Course Registration System and the cooperative management system taught me end-to-end full-stack development — PHP, MySQL, role-based authentication, and teamwork on real requirements. It was my first taste of production-style software.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd use an MVC framework like Laravel instead of procedural PHP for maintainability.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Network Communications</h5>
+          <p class="reflection-course"><i class="fa-solid fa-network-wired me-1"></i>Protocols &amp; Networking</p>
+          <p>This course made networking tangible. Wireshark let me see DNS and HTTP traffic at the packet level, and Packet Tracer let me design and configure networks hands-on — from subnetting to ARP and routing.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd explore dynamic routing protocols and network security in more depth.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Data Structure &amp; Algorithm</h5>
+          <p class="reflection-course"><i class="fa-solid fa-diagram-project me-1"></i>C++ Data Structures</p>
+          <p>Implementing linked lists, sorting, and a flight-simulation mini project in C++ sharpened my problem-solving and taught me to choose the right data structure for the job, balancing time and space.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd analyse the time complexity of each solution more rigorously.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Database (WBL)</h5>
+          <p class="reflection-course"><i class="fa-solid fa-database me-1"></i>Database Design &amp; SQL</p>
+          <p>The two-phase alternative assessment took me from ER modelling and normalisation through to full SQL implementation. This end-to-end process gave me real confidence in designing databases for actual systems.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd study query execution plans to optimise performance on large datasets.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Software Engineering (WBL)</h5>
+          <p class="reflection-course"><i class="fa-solid fa-gears me-1"></i>SDLC &amp; Methodologies</p>
+          <p>Writing the academic report taught me software engineering principles, development methodologies, and best practices — and how good process, not just code, determines whether a project succeeds.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd apply Agile practices on a real team project to experience them firsthand.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 4 -->
+    <p class="sem-heading mb-3 mt-4"><i class="fa-solid fa-4 me-1"></i> Semester 4</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Data Mining</h5>
+          <p class="reflection-course"><i class="fa-solid fa-magnifying-glass-chart me-1"></i>Classification &amp; Clustering</p>
+          <p>The two projects introduced me to extracting patterns from data through classification and clustering. This was a major step toward my data engineering focus — turning raw data into meaningful groups and predictions.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd evaluate models with stronger metrics and validation techniques.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Data Analytics Programming</h5>
+          <p class="reflection-course"><i class="fa-solid fa-chart-line me-1"></i>Python &amp; Jupyter</p>
+          <p>Analysing car and fuel-consumption datasets in Python and Jupyter taught me the full data workflow — cleaning, exploring, and visualising data with pandas. This is the practical core of data engineering.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd automate the pipeline and present insights through interactive dashboards.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Operating Systems</h5>
+          <p class="reflection-course"><i class="fa-solid fa-server me-1"></i>Memory &amp; Process Management</p>
+          <p>Implementing virtual memory management with FIFO and LRU page replacement gave me a deep appreciation for what runs beneath every application — processes, scheduling, and memory.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd experiment with more page-replacement algorithms to compare their efficiency.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Object Oriented Programming</h5>
+          <p class="reflection-course"><i class="fa-solid fa-cubes me-1"></i>Java OOP</p>
+          <p>Building the Online Shopping Cart in Java solidified the core OOP pillars — encapsulation, inheritance, and polymorphism — and showed me how to model real-world entities cleanly in code.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd add unit tests and apply SOLID principles for more robust design.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 5 -->
+    <p class="sem-heading mb-3 mt-4"><i class="fa-solid fa-5 me-1"></i> Semester 5</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Database Programming</h5>
+          <p class="reflection-course"><i class="fa-solid fa-database me-1"></i>Indexing &amp; NoSQL</p>
+          <p>Benchmarking B-tree and full-text indexes made performance theory tangible, while the MongoDB project pushed me into a completely different, document-oriented way of thinking — invaluable for data engineering.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd connect these databases to cloud platforms like MongoDB Atlas.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Artificial Intelligence</h5>
+          <p class="reflection-course"><i class="fa-solid fa-robot me-1"></i>AI &amp; Machine Learning</p>
+          <p>The AI project introduced me to intelligent system design — search algorithms, machine learning fundamentals, and how agents perceive, reason, and act. It broadened how I think about what software can do.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd build hands-on ML models with scikit-learn and TensorFlow.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Enterprise Systems Design &amp; Modeling (WBL)</h5>
+          <p class="reflection-course"><i class="fa-solid fa-building me-1"></i>SAP &amp; Enterprise Systems</p>
+          <p>This course exposed me to SAP and how large organisations model their business processes. The industry newsletters and technical report connected enterprise theory to real corporate practice.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd get hands-on with an SAP module to understand enterprise workflows in practice.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester 6 -->
+    <p class="sem-heading mb-3 mt-4"><i class="fa-solid fa-6 me-1"></i> Semester 6</p>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Special Topic in Data Engineering</h5>
+          <p class="reflection-course"><i class="fa-solid fa-star me-1"></i>Azure, Spark &amp; Generative AI</p>
+          <p>The capstone of my track. Hands-on tutorials with Azure, Apache Spark, and Generative AI gave me the actual toolkit of a data engineer, and building this e-portfolio itself made me reflect on how far I've come.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd deploy a complete end-to-end data pipeline on the cloud.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>High Performance Data Processing</h5>
+          <p class="reflection-course"><i class="fa-solid fa-bolt me-1"></i>Big Data Processing</p>
+          <p>This course pushed me into big-data scale, processing large datasets efficiently with distributed tools. It showed me how techniques change completely when data no longer fits on one machine.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd benchmark different cluster configurations to optimise processing speed.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Business Intelligence</h5>
+          <p class="reflection-course"><i class="fa-solid fa-chart-pie me-1"></i>ETL &amp; Dashboards</p>
+          <p>The three-phase project took me end-to-end — from proposal, to building a data workflow/ETL, to a final BI dashboard. I learned how raw data becomes decision-ready insight for a business.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd add predictive analytics on top of the descriptive dashboards.</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="reflection-card h-100">
+          <h5>Application Development</h5>
+          <p class="reflection-course"><i class="fa-solid fa-mobile-screen me-1"></i>Modern App Development</p>
+          <p>The lab work introduced me to building modern applications with current frameworks and practices, tying together the programming, design, and database skills I'd gathered across the degree.</p>
+          <div class="improvement"><strong><i class="fa-solid fa-lightbulb me-1"></i>Improvement:</strong> I'd ship a full app to production and gather real user feedback.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="py-5" style="background:#f8f9fa;">
+  <div class="container text-center">
+    <div class="section-divider mx-auto"></div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-subtitle">Feel free to reach out via any of the platforms below</p>
+    <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+      <a href="mailto:alifptn1234@gmail.com" class="btn-accent px-4 py-2" style="border-radius:8px;font-size:.95rem;">
+        <i class="fa-solid fa-envelope me-2"></i>alifptn1234@gmail.com
+      </a>
+      <a href="https://github.com/AlifFathi" target="_blank" class="btn-outline-accent px-4 py-2" style="border-radius:8px;font-size:.95rem;">
+        <i class="fa-brands fa-github me-2"></i>GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/mohamed-alif-fathi-abdul-latif-46b48229a/" target="_blank" class="btn-outline-accent px-4 py-2" style="border-radius:8px;font-size:.95rem;">
+        <i class="fa-brands fa-linkedin me-2"></i>LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container text-center">
+    <p class="mb-1" style="color:#c9d1d9;font-weight:600;">Mohamed Alif Fathi bin Abdul Latif</p>
+    <p class="mb-3" style="font-size:.88rem;">CS Data Engineering @ UTM &middot; A23CS0112</p>
+    <div class="mb-3">
+      <a href="https://github.com/AlifFathi" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/mohamed-alif-fathi-abdul-latif-46b48229a/" target="_blank" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="mailto:alifptn1234@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <p style="font-size:.78rem;color:#484f58;">© 2026 Mohamed Alif Fathi bin Abdul Latif &mdash; UTM</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>

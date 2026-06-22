@@ -1,0 +1,15 @@
+[{
+  "_id": "A23CS0001",
+  "name": "Sabrina Carpenter",
+  "email": "sabrina@utm.edu.my",
+  "contact": "0123456789",
+  "address": {
+    "street": "123 Jalan Melati",
+    "city": "Muar",
+    "state": "Johor"
+  },
+  "borrowHistory": [],
+  "createdAt": {
+    "$date": "2024-11-20T00:00:00.000Z"
+  }
+}]

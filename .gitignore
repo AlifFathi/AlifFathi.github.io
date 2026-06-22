@@ -1,0 +1,15 @@
+# Composer / PHP dependencies (large, not needed for the portfolio site)
+**/vendor/
+**/composer.lock
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Wireshark capture files (large binaries)
+*.pcap
+*.pcapng
+
+# Word source of the assignment brief (keep PDFs, not the docx)
+*.docx

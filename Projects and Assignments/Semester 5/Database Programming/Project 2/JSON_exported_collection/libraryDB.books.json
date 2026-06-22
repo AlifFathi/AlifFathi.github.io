@@ -1,0 +1,19 @@
+[{
+  "_id": "B001",
+  "title": "Database Systems Concepts",
+  "authors": [
+    "Abraham Silberschatz",
+    "Henry Korth"
+  ],
+  "categories": [
+    "Database",
+    "Computer Science"
+  ],
+  "publisher": {
+    "name": "McGraw-Hill",
+    "year": 2021
+  },
+  "createdAt": {
+    "$date": "2024-10-15T00:00:00.000Z"
+  }
+}]
